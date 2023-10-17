@@ -77,6 +77,16 @@ header {
     background-color: rgb(68, 97, 67);
     height: 100px;
     margin-bottom: 7%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 3%;
+}
+
+.output {
+    font-size: 35px;
+    color: rgb(3, 3, 101);
+    font-weight: 1000;
 }
 
 .screen, .display {
@@ -86,5 +96,5 @@ header {
     height: 550px;
     width: 25%;
     background-color: darkcyan;
-    padding: 30px;
+    padding: 2%;
 }
