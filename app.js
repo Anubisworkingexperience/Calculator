@@ -32,7 +32,13 @@ const five = document.querySelector('.five');
 
 function outputWrite(button) {
     button.addEventListener('click', () => {
-        output.textContent += button.textContent;
+        let cursor = '|';
+        for (let i = 0; i < output.textContent.length; i++) {
+              if (output.textContent[i] == cursor) {
+                output.textContent = output.textContent.slice(0, i) + output.textContent.slice(i + 1);
+              }   
+        }
+        output.textContent += button.textContent + cursor;
     });
 };
 

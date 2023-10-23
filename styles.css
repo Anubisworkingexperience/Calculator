@@ -51,8 +51,8 @@ header {
 
 .special {
     background-color: rgb(113, 185, 4);
-    border-top: none;
-    border-left: none;
+    border-top: rgb(136, 221, 8);
+    border-left: rgb(136, 221, 8);
 }
 
 .special:hover {
@@ -87,6 +87,8 @@ header {
     font-size: 35px;
     color: rgb(3, 3, 101);
     font-weight: 1000;
+    overflow-y: hidden;
+    overflow-x: auto;
 }
 
 .screen, .display {
@@ -97,4 +99,17 @@ header {
     width: 25%;
     background-color: darkcyan;
     padding: 2%;
+}
+
+/* custom scrollbar for all browsers except firefox*/
+.output::-webkit-scrollbar {
+    height: 5px;
+}
+
+.output::-webkit-scrollbar-track {
+    background: rgb(68, 97, 67);
+}
+
+.output::-webkit-scrollbar-thumb {
+    background: rgb(3, 3, 101);
 }
