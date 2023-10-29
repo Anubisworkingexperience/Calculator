@@ -8,18 +8,20 @@ let secondNumber;
 let operator;
 
 function operate(firstNumber, operator, secondNumber) {
+    let answer;
     if (operator == '+') {
-        add(firstNumber, secondNumber);
+        answer = add(firstNumber, secondNumber);
     }
     else if (operator == '-') {
-        subtract(firstNumber, secondNumber);
+        answer = subtract(firstNumber, secondNumber);
     }
-    else if (operator == '*') {
-        multiply(firstNumber, secondNumber);
+    else if (operator == '×') {
+        answer = multiply(firstNumber, secondNumber);
     }
     else {
-        divide(firstNumber, secondNumber);
+        answer = divide(firstNumber, secondNumber);
     }
+    return answer;
 }
 
 // flashing output cursor
@@ -57,6 +59,36 @@ for (button of buttons) {
     }
 }
 
+function manageSpecialButtons() {
+    clear.addEventListener('click', () => {
+        output.textContent = '|';
+    });
+}
+
+manageSpecialButtons(); 
+
+function manageOperate() {
+    equals.addEventListener('click', () => {
+        console.log('equals clicked!');
+        let outputText = output.textContent
+        for (let i = 0; i < outputText.length; i++) {
+            if (outputText[i] == '×' ||
+            outputText[i] == '÷' ||
+            outputText[i] == '+' ||
+            outputText[i] == '-') {
+                let firstNumber = Number(outputText.slice(0, i));
+                let secondNumber = Number(outputText.slice(i + 1, -1));
+                console.log(firstNumber, outputText[i], secondNumber);
+                let result = operate(firstNumber, outputText[i], secondNumber);
+                console.log(result);
+                output.textContent = result.toString();
+            }
+        }
+    });
+}
+
+
+manageOperate();
 
 
 
