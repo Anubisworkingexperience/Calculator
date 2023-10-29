@@ -1,6 +1,7 @@
 body {
     background-color: darkgray;
     margin: 0;
+    height: 100vh;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -38,11 +39,11 @@ header, footer {
 }
 
 footer {
-    height: 150px;
+    height: 15%;
 }
 
 header {
-    height: 75px;
+    height: 10%;
 }
 
 .last {
@@ -112,4 +113,35 @@ header {
 
 .output::-webkit-scrollbar-thumb {
     background: rgb(3, 3, 101);
+}
+
+.operation {
+    background-color:rgb(186, 156, 107);
+}
+
+.operation:hover {
+    background-color:rgb(213, 180, 127);
+}
+
+.additional {
+    background-color: rgb(197, 113, 239);
+}
+
+.additional:hover {
+    background-color: rgb(210, 155, 237);
+}
+
+.row {
+    display: flex;
+    flex-wrap: nowrap;
+    height: 25%;
+    gap: 1.5%;
+}
+
+.equals {
+    background-color:rgb(192, 100, 153);
+}
+
+.equals:hover {
+    background-color:rgb(188, 127, 162);
 }

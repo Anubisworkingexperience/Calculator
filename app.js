@@ -19,7 +19,12 @@ function operate(firstNumber, operator, secondNumber) {
         answer = multiply(firstNumber, secondNumber);
     }
     else {
+        if (secondNumber == 0) {
+            answer = 'wdym';
+        }
+        else {
         answer = divide(firstNumber, secondNumber);
+        }
     }
     return answer;
 }
@@ -59,23 +64,38 @@ for (button of buttons) {
     }
 }
 
-function manageSpecialButtons() {
+function manageAdditionalButtons() {
     clear.addEventListener('click', () => {
         output.textContent = '|';
     });
+    
+    /*fix this so cursor doesn't disappear*/
+    del.addEventListener('click', () => {
+        if (output.textContent != '|') {
+        output.textContent = output.textContent.slice(0, output.textContent.length - 3);
+        }
+    });
 }
 
-manageSpecialButtons(); 
+manageAdditionalButtons();
 
-function manageOperate() {
+
+function complexOperate() {
+    const operators = document.querySelectorAll('.operation');
+    for (let operator of operators) {
+
+    }
+}
+
+function singleOperate() {
     equals.addEventListener('click', () => {
-        console.log('equals clicked!');
         let outputText = output.textContent
         for (let i = 0; i < outputText.length; i++) {
             if (outputText[i] == '×' ||
             outputText[i] == '÷' ||
             outputText[i] == '+' ||
             outputText[i] == '-') {
+    
                 let firstNumber = Number(outputText.slice(0, i));
                 let secondNumber = Number(outputText.slice(i + 1, -1));
                 console.log(firstNumber, outputText[i], secondNumber);
@@ -87,8 +107,7 @@ function manageOperate() {
     });
 }
 
-
-manageOperate();
+singleOperate();
 
 
 
