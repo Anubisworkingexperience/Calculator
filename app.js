@@ -69,10 +69,9 @@ function manageAdditionalButtons() {
         output.textContent = '|';
     });
     
-    /*fix this so cursor doesn't disappear*/
     del.addEventListener('click', () => {
         if (output.textContent != '|') {
-        output.textContent = output.textContent.slice(0, output.textContent.length - 3);
+        output.textContent = output.textContent.slice(0, output.textContent.length - 2) + '|';
         }
     });
 }
@@ -101,7 +100,7 @@ function singleOperate() {
                 console.log(firstNumber, outputText[i], secondNumber);
                 let result = operate(firstNumber, outputText[i], secondNumber);
                 console.log(result);
-                output.textContent = result.toString();
+                output.textContent = result.toString() + '|';
             }
         }
     });
