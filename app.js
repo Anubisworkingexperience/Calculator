@@ -81,10 +81,41 @@ manageAdditionalButtons();
 
 function complexOperate() {
     const operators = document.querySelectorAll('.operation');
+    const digits = document.querySelectorAll('.digit');
     for (let operator of operators) {
-
+        operator.addEventListener('click', () => {
+            console.log(operator);
+            let operatorArray = output.textContent.split('').filter((char) => 
+            char == '×' || char == '+' || char == '-' || char == '÷')
+            console.log(operatorArray);
+            if (operatorArray.length == 2) {
+                let firstOperator = operatorArray[0];
+                let nextOperator = operatorArray[1];
+                let first = Number(output.textContent.slice(0, output.textContent.indexOf(firstOperator)));
+                let second = Number(output.textContent.slice(output.textContent.indexOf(firstOperator) + 1, output.textContent.indexOf(nextOperator)));
+                console.log(first, second, firstOperator, nextOperator);
+                let result = operate(first, firstOperator, second);
+                output.textContent = result.toString() + '|';
+                console.log(nextOperator);
+                console.log(result);
+                // let anotherNumber = '';
+                // for (let digit of digits) {
+                //     digit.addEventListener('click', () => {
+                //         anotherNumber += digit.textContent;
+                //         console.log(digit);
+                //         console.log(anotherNumber);
+                //         console.log(nextResult);
+                //     });
+                // }
+                // let nextResult = operate(result, nextOperator, Number(anotherNumber));
+                // console.log(nextResult);
+                // output.textContent = nextResult.toString();
+            }
+        });
     }
 }
+
+complexOperate();
 
 function singleOperate() {
     equals.addEventListener('click', () => {
@@ -110,3 +141,8 @@ singleOperate();
 
 
 
+/*TODO
+0. Finish complex operate
+1. 3 additional buttons
+2. keyboard support
+3. css sizing fix*/
