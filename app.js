@@ -82,6 +82,7 @@ manageAdditionalButtons();
 function complexOperate() {
     const operators = document.querySelectorAll('.operation');
     const digits = document.querySelectorAll('.digit');
+    const operatorsWithEquals = document.querySelectorAll('.complexOperate');
     for (let operator of operators) {
         operator.addEventListener('click', () => {
             console.log(operator);
@@ -103,10 +104,17 @@ function complexOperate() {
                 for (let digit of digits) {
                     digit.addEventListener('click', () => {
                         index += 1;
-                        console.log(index);
+                        anotherNumber += digit.textContent;
                         if (index == 1) {
                             output.textContent = digit.textContent + '|';
                         }
+                        for (let operator of operatorsWithEquals) {
+                            operator.addEventListener('click', () => {
+                                console.log(anotherNumber);
+                                output.textContent = operate(result, nextOperator, Number(anotherNumber)) + '|';
+                            });
+                        }
+
                     });
                 }
             }
@@ -143,5 +151,4 @@ singleOperate();
 /*TODO
 0. Finish complex operate
 1. 3 additional buttons
-2. keyboard support
-3. css sizing fix*/
+2. keyboard support */
