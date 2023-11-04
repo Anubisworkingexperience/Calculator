@@ -92,24 +92,23 @@ function complexOperate() {
                 let firstOperator = operatorArray[0];
                 let nextOperator = operatorArray[1];
                 let first = Number(output.textContent.slice(0, output.textContent.indexOf(firstOperator)));
-                let second = Number(output.textContent.slice(output.textContent.indexOf(firstOperator) + 1, output.textContent.indexOf(nextOperator)));
+                let second = Number(output.textContent.slice(output.textContent.indexOf(firstOperator) + 1, output.textContent.lastIndexOf(nextOperator)));
                 console.log(first, second, firstOperator, nextOperator);
                 let result = operate(first, firstOperator, second);
                 output.textContent = result.toString() + '|';
                 console.log(nextOperator);
                 console.log(result);
-                // let anotherNumber = '';
-                // for (let digit of digits) {
-                //     digit.addEventListener('click', () => {
-                //         anotherNumber += digit.textContent;
-                //         console.log(digit);
-                //         console.log(anotherNumber);
-                //         console.log(nextResult);
-                //     });
-                // }
-                // let nextResult = operate(result, nextOperator, Number(anotherNumber));
-                // console.log(nextResult);
-                // output.textContent = nextResult.toString();
+                let anotherNumber = '';
+                let index = 0;
+                for (let digit of digits) {
+                    digit.addEventListener('click', () => {
+                        index += 1;
+                        console.log(index);
+                        if (index == 1) {
+                            output.textContent = digit.textContent + '|';
+                        }
+                    });
+                }
             }
         });
     }
