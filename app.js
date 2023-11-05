@@ -29,11 +29,7 @@ function operate(firstNumber, operator, secondNumber) {
     return answer;
 }
 
-// flashing output cursor
 const output = document.querySelector('.output');
-// setInterval(function() {output.textContent = ''}, 500);
-// setInterval(function() {output.textContent = '|'}, 1000);
-
 
 const five = document.querySelector('.five');
 
@@ -56,10 +52,11 @@ const del = document.querySelector('.del');
 const clear = document.querySelector('.clear');
 const sign = document.querySelector('.sign');
 const percent = document.querySelector('.percent');
+const dot = document.querySelector('.dot');
 
 for (button of buttons) {
     if ((button != equals) && (button != del) && (button != clear) &&
-        (button != sign) && (button != percent)) {
+        (button != sign) && (button != percent) && (button != dot)) {
     outputWrite(button);
     }
 }
@@ -74,7 +71,14 @@ function manageAdditionalButtons() {
         output.textContent = output.textContent.slice(0, output.textContent.length - 2) + '|';
         }
     });
+    dot.addEventListener('click', () => {
+        if (output.textContent != '|') {
+            output.textContent = output.textContent.slice(0, output.textContent.length - 1) + '.' + '|';
+            }
+    });
+
 }
+
 
 manageAdditionalButtons();
 
@@ -96,6 +100,7 @@ function complexOperate() {
                 let second = Number(output.textContent.slice(output.textContent.indexOf(firstOperator) + 1, output.textContent.lastIndexOf(nextOperator)));
                 console.log(first, second, firstOperator, nextOperator);
                 let result = operate(first, firstOperator, second);
+                result = roundOutputNumbers(result);
                 output.textContent = result.toString() + '|';
                 console.log(nextOperator);
                 console.log(result);
@@ -111,15 +116,26 @@ function complexOperate() {
                         for (let operator of operatorsWithEquals) {
                             operator.addEventListener('click', () => {
                                 console.log(anotherNumber);
-                                output.textContent = operate(result, nextOperator, Number(anotherNumber)) + '|';
+                                let final = operate(result, nextOperator, Number(anotherNumber)) + '|';
+                                final = roundOutputNumbers(final);
+                                output.textContent = final;
                             });
                         }
 
                     });
                 }
+                
             }
         });
     }
+}
+
+function roundOutputNumbers(number) {
+    let strNum = number.toString();
+    if (strNum.includes('.')) {
+        strNum = parseFloat(strNum).toFixed(2);
+    }
+    return strNum;
 }
 
 complexOperate();
@@ -138,6 +154,7 @@ function singleOperate() {
                 console.log(firstNumber, outputText[i], secondNumber);
                 let result = operate(firstNumber, outputText[i], secondNumber);
                 console.log(result);
+                result = roundOutputNumbers(result);
                 output.textContent = result.toString() + '|';
             }
         }
