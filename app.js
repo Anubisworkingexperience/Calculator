@@ -54,12 +54,19 @@ const sign = document.querySelector('.sign');
 const percent = document.querySelector('.percent');
 const dot = document.querySelector('.dot');
 
+const plusButton = document.querySelector('.plus');
+const minusButton = document.querySelector('.minus');
+const multiplyButton = document.querySelector('.multiply');
+const divideButton = document.querySelector('.divide');
+
+
 for (button of buttons) {
-    if ((button != equals) && (button != del) && (button != clear) &&
-        (button != sign) && (button != percent) && (button != dot)) {
-    outputWrite(button);
+    if (((button != equals) && (button != del) && (button != clear) &&
+        (button != sign) && (button != percent) && (button != dot))) {
+        outputWrite(button);
     }
 }
+
 
 function manageAdditionalButtons() {
     clear.addEventListener('click', () => {
@@ -76,15 +83,30 @@ function manageAdditionalButtons() {
             output.textContent = output.textContent.slice(0, output.textContent.length - 1) + '.' + '|';
             }
     });
+    //fix this 
+    sign.addEventListener('click', () => {
+        if (output.textContent != '|') {
+            output.textContent = '-' + output.textContent;
+        }
+        signButtonClicked = true;
+    });
+    //---
+
+    percent.addEventListener('click', () => {
+        if (output.textContent != '|') {
+            output.textContent = (Number(output.textContent.slice(0, output.textContent.length - 1)) / 100).toString() + '|';
+        }
+    });
 
 }
 
 
 manageAdditionalButtons();
 
+const operators = document.querySelectorAll('.operation');
+
 
 function complexOperate() {
-    const operators = document.querySelectorAll('.operation');
     const digits = document.querySelectorAll('.digit');
     const operatorsWithEquals = document.querySelectorAll('.complexOperate');
     for (let operator of operators) {
@@ -116,9 +138,11 @@ function complexOperate() {
                         for (let operator of operatorsWithEquals) {
                             operator.addEventListener('click', () => {
                                 console.log(anotherNumber);
-                                let final = operate(result, nextOperator, Number(anotherNumber)) + '|';
+                                let final = operate(Number(result), nextOperator, Number(anotherNumber));
+                                console.log(final);
                                 final = roundOutputNumbers(final);
-                                output.textContent = final;
+                                console.log(final);
+                                output.textContent = final + '|';
                             });
                         }
 
@@ -168,4 +192,5 @@ singleOperate();
 /*TODO
 0. Finish complex operate
 1. 3 additional buttons
-2. keyboard support */
+2. keyboard support
+3. Remove opportunity to write operations to output while it's blank */
